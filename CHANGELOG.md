@@ -15,6 +15,14 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 - **v0.9** - Projeto Final
 - **v1.0** - Guia Completo
 
+## v0.3
+
+- Primeiro teste prático
+- Documentação complementar
+- Exemplos didáticos
+- Melhorias no README com novas seções
+- Adicionada pasta notes/ para planejamento
+
 ## v0.2
 
 - Adicionada documentação da estrutura do projeto

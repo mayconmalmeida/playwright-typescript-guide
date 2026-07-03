@@ -27,7 +27,49 @@
 
 Este repositório serve como material complementar de uma série de artigos do blog sobre automação de testes com Playwright e TypeScript. O objetivo é ensinar do zero até boas práticas reais de mercado, com exemplos práticos e organizados.
 
-## 🚀 Primeiros Passos
+## 🎯 Objetivos da Série
+
+Esta série ensina **muito mais do que apenas Playwright**! Você aprenderá:
+- Arquitetura de projetos de automação
+- Organização de código
+- Boas práticas de mercado
+- Engenharia de automação profissional
+
+## � Quem deve estudar?
+
+- Desenvolvedores que querem começar com automação
+- QAs que querem aprender Playwright com TypeScript
+- Profissionais que querem melhorar suas habilidades
+- Quem quer aprender boas práticas reais de mercado
+
+## 🧠 O que você aprenderá?
+
+1. Criar projetos Playwright do zero
+2. Estruturar projetos profissionalmente
+3. Escrever testes escaláveis
+4. Utilizar padrões como Page Objects
+5. Trabalhar com Fixtures
+6. Boas práticas e otimizações
+
+## 🗺️ Roadmap
+
+- ✅ Parte 1 - Criando o primeiro projeto
+- ✅ Parte 2 - Entendendo a estrutura do projeto
+- 🚧 Parte 3 - Escrevendo nossos primeiros testes
+- ⬜ Parte 4 - Page Objects
+- ⬜ Parte 5 - Fixtures
+- ⬜ Parte 6 - Boas práticas e otimizações
+
+## 🔗 Links para os Artigos
+
+*(Em breve, os links serão adicionados)*
+
+## 📚 Links para Documentação Oficial
+
+- [Playwright](https://playwright.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## �🚀 Primeiros Passos
 
 ### Pré-requisitos
 
@@ -61,15 +103,7 @@ Confira a documentação passo a passo na pasta `docs/`:
 
 - [01 - Criando o Primeiro Projeto](./docs/01-criando-primeiro-projeto.md)
 - [02 - Entendendo a Estrutura do Projeto](./docs/02-entendendo-a-estrutura.md)
-
-## 🗺️ Roadmap
-
-- ✅ Parte 1 - Criando o primeiro projeto
-- 🚧 Parte 2 - Entendendo a estrutura do projeto
-- ⬜ Parte 3 - Escrevendo nossos primeiros testes
-- ⬜ Parte 4 - Page Objects
-- ⬜ Parte 5 - Fixtures
-- ⬜ Parte 6 - Boas práticas e otimizações
+- [03 - Escrevendo o Primeiro Teste](./docs/03-escrevendo-primeiro-teste.md)
 
 ## 📁 Estrutura do Projeto
 
@@ -80,8 +114,10 @@ playwright-typescript-guide/
 │       └── playwright.yml    # Workflow do GitHub Actions para CI
 ├── assets/                   # Arquivos de mídia (imagens, screenshots, gifs)
 ├── docs/                     # Documentação do projeto
+├── examples/                 # Exemplos práticos de código
 ├── tests/                    # Pasta principal dos testes
 │   └── example.spec.ts       # Exemplo de teste padrão do Playwright
+├── notes/                    # Anotações e planejamento
 ├── .gitignore                # Arquivos e pastas ignorados pelo Git
 ├── LICENSE                   # Licença do projeto
 ├── package.json              # Dependências e scripts do projeto
@@ -93,6 +129,7 @@ playwright-typescript-guide/
 ### Arquivos e Pastas Principais
 
 - **`tests/`**: Pasta onde ficam todos os testes.
+- **`examples/`**: Pasta com exemplos práticos e didáticos de código.
 - **`playwright.config.ts`**: Arquivo de configuração global do Playwright, onde definimos browsers, reporters, retries, etc.
 - **`package.json`**: Arquivo de configuração do npm, contendo dependências e scripts.
 - **`package-lock.json`**: Arquivo gerado automaticamente para travar as versões exatas das dependências.
