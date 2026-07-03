@@ -1,4 +1,20 @@
-# Capítulo 02 — Entendendo a Estrutura do Projeto
+# Engenharia de Automação com Playwright
+
+## Capítulo 2 — Entendendo a estrutura do projeto
+
+### Objetivo
+Analisar detalhadamente a estrutura de um projeto Playwright com TypeScript e entender o papel de cada arquivo e pasta.
+
+### Tempo estimado
+20-25 minutos
+
+### Nível
+Iniciante
+
+### Pré-requisitos
+- Ter concluído o Capítulo 1
+
+---
 
 Neste capítulo, vamos analisar detalhadamente a estrutura de um projeto Playwright com TypeScript.
 

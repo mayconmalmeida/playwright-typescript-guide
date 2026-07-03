@@ -4,7 +4,7 @@ Obrigado por querer contribuir com o Playwright TypeScript Guide!
 
 ## Objetivo do Projeto
 
-Este repositório tem como objetivo ser um guia completo, didático e profissional para aprender automação de testes com Playwright e TypeScript. Todo o conteúdo é complementar a uma série de artigos do blog.
+Este repositório tem como objetivo ser um guia completo, didático e profissional para aprender automação de testes com Playwright e TypeScript. Todo o conteúdo é complementar a uma série de artigos do blog sobre Engenharia de Automação.
 
 ## Como Contribuir
 
@@ -14,6 +14,17 @@ Este repositório tem como objetivo ser um guia completo, didático e profission
 4. Faça o commit das suas alterações (`git commit -m 'feat: adiciona nova feature'`)
 5. Push para a branch (`git push origin feature/nova-feature`)
 6. Abra um Pull Request
+
+## Sincronização entre Código e Documentação
+
+⚠️ **Importante**: Toda nova contribuição deve manter a documentação sincronizada com o código.
+
+Quando você alterar:
+- **Código de exemplo**: Atualize a documentação correspondente em `docs/`
+- **Estrutura do projeto**: Atualize o README.md e a documentação
+- **Novos capítulos ou conteúdos**: Atualize o Roadmap e as tabelas do README
+
+Isso garante que o projeto permaneça coerente e fácil de seguir para todos os estudantes.
 
 ## Padrão de Commits
 

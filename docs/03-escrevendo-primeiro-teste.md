@@ -1,4 +1,20 @@
-# Capítulo 03 — Escrevendo o Primeiro Teste
+# Engenharia de Automação com Playwright
+
+## Capítulo 3 — Escrevendo seu primeiro teste automatizado
+
+### Objetivo
+Aprender a escrever um teste real com Playwright, entender conceitos de locators e assertions, e aplicar boas práticas.
+
+### Tempo estimado
+25-30 minutos
+
+### Nível
+Iniciante
+
+### Pré-requisitos
+- Ter concluído os Capítulos 1 e 2
+
+---
 
 Neste capítulo, vamos aprender a escrever nosso primeiro teste real com Playwright!
 

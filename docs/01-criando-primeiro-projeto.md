@@ -1,13 +1,23 @@
-# Capítulo 01: Criando o Primeiro Projeto
+# Engenharia de Automação com Playwright
 
-Bem-vindo ao Playwright TypeScript Guide! Neste capítulo, vamos aprender a criar um projeto Playwright do zero usando TypeScript.
+## Capítulo 1 — Criando seu primeiro projeto
 
-## Pré-requisitos
+### Objetivo
+Aprender a criar um projeto Playwright do zero usando TypeScript, entender a estrutura básica e executar os primeiros testes.
 
-Antes de começar, certifique-se de ter:
+### Tempo estimado
+15-20 minutos
 
+### Nível
+Iniciante
+
+### Pré-requisitos
 - Node.js (versão LTS recomendada)
 - npm ou yarn
+
+---
+
+Bem-vindo ao Playwright TypeScript Guide! Neste capítulo, vamos aprender a criar um projeto Playwright do zero usando TypeScript.
 
 ## Passo 1: Inicializando o Projeto
 
@@ -49,7 +59,6 @@ meu-projeto-playwright/
 ```
 
 ### Arquivos importantes:
-
 - `package.json`: Contém as dependências e scripts do projeto
 - `playwright.config.ts`: Arquivo de configuração do Playwright
 - `tests/`: Pasta onde ficarão os seus testes
@@ -64,4 +73,4 @@ npx playwright test
 
 ## Próximos Passos
 
-No próximo capítulo, vamos aprender a escrever nossos primeiros testes!
+No próximo capítulo, vamos entender a estrutura do projeto em detalhes!
