@@ -60,6 +60,46 @@ npx playwright install --with-deps
 Confira a documentação passo a passo na pasta `docs/`:
 
 - [01 - Criando o Primeiro Projeto](./docs/01-criando-primeiro-projeto.md)
+- [02 - Entendendo a Estrutura do Projeto](./docs/02-entendendo-a-estrutura.md)
+
+## 🗺️ Roadmap
+
+- ✅ Parte 1 - Criando o primeiro projeto
+- 🚧 Parte 2 - Entendendo a estrutura do projeto
+- ⬜ Parte 3 - Escrevendo nossos primeiros testes
+- ⬜ Parte 4 - Page Objects
+- ⬜ Parte 5 - Fixtures
+- ⬜ Parte 6 - Boas práticas e otimizações
+
+## 📁 Estrutura do Projeto
+
+```
+playwright-typescript-guide/
+├── .github/
+│   └── workflows/
+│       └── playwright.yml    # Workflow do GitHub Actions para CI
+├── assets/                   # Arquivos de mídia (imagens, screenshots, gifs)
+├── docs/                     # Documentação do projeto
+├── tests/                    # Pasta principal dos testes
+│   └── example.spec.ts       # Exemplo de teste padrão do Playwright
+├── .gitignore                # Arquivos e pastas ignorados pelo Git
+├── LICENSE                   # Licença do projeto
+├── package.json              # Dependências e scripts do projeto
+├── package-lock.json         # Controle de versões exatas das dependências
+├── playwright.config.ts      # Arquivo de configuração do Playwright
+└── readme.md                 # Este arquivo
+```
+
+### Arquivos e Pastas Principais
+
+- **`tests/`**: Pasta onde ficam todos os testes.
+- **`playwright.config.ts`**: Arquivo de configuração global do Playwright, onde definimos browsers, reporters, retries, etc.
+- **`package.json`**: Arquivo de configuração do npm, contendo dependências e scripts.
+- **`package-lock.json`**: Arquivo gerado automaticamente para travar as versões exatas das dependências.
+- **`.github/workflows/`**: Workflows do GitHub Actions para integração contínua.
+- **`playwright-report/`**: Pasta gerada automaticamente com o relatório HTML dos testes (ignorada pelo Git).
+- **`test-results/`**: Pasta com artefatos dos testes (screenshots, traces, etc.) (ignorada pelo Git).
+- **`node_modules/`**: Pasta com todas as dependências instaladas (ignorada pelo Git).
 
 ## 🛠️ Scripts Disponíveis
 
