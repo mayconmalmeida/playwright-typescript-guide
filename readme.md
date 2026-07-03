@@ -35,7 +35,7 @@ Esta série ensina **muito mais do que apenas Playwright**! Você aprenderá:
 - Boas práticas de mercado
 - Engenharia de automação profissional
 
-## � Quem deve estudar?
+## 👥 Quem deve estudar?
 
 - Desenvolvedores que querem começar com automação
 - QAs que querem aprender Playwright com TypeScript
@@ -69,7 +69,7 @@ Esta série ensina **muito mais do que apenas Playwright**! Você aprenderá:
 - [Playwright](https://playwright.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 
-## �🚀 Primeiros Passos
+## 🚀 Primeiros Passos
 
 ### Pré-requisitos
 
