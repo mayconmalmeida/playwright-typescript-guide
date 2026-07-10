@@ -48,7 +48,7 @@
 | 1 | Criando seu primeiro projeto | ✅ |
 | 2 | Entendendo a estrutura | ✅ |
 | 3 | Escrevendo seu primeiro teste | ✅ |
-| 4 | Dominando Locators | ⬜ |
+| 4 | Dominando Locators | 🚧 |
 | 5 | Construindo Page Objects | ⬜ |
 | 6 | Trabalhando com Fixtures | ⬜ |
 | 7 | Organização profissional | ⬜ |
@@ -76,7 +76,7 @@
 ✅ Capítulo 1 — Criando seu primeiro projeto  
 ✅ Capítulo 2 — Entendendo a estrutura do projeto  
 ✅ Capítulo 3 — Escrevendo seu primeiro teste automatizado  
-⬜ Capítulo 4 — Dominando Locators  
+🚧 Capítulo 4 — Dominando Locators  
 ⬜ Capítulo 5 — Construindo Page Objects  
 ⬜ Capítulo 6 — Trabalhando com Fixtures  
 ⬜ Capítulo 7 — Organizando projetos profissionais  
@@ -85,6 +85,9 @@
 ⬜ Capítulo 10 — Projeto Final  
 
 ---
+
+> Este capítulo aborda boas práticas para criação de locators robustos e estáveis.
+
 
 ## 🎓 Como estudar esta série
 
@@ -168,6 +171,7 @@ Confira a documentação passo a passo na pasta `docs/`:
 - [Capítulo 1 — Criando seu primeiro projeto](./docs/01-criando-primeiro-projeto.md)  
 - [Capítulo 2 — Entendendo a estrutura do projeto](./docs/02-entendendo-a-estrutura.md)  
 - [Capítulo 3 — Escrevendo seu primeiro teste](./docs/03-escrevendo-primeiro-teste.md)  
+- [Capítulo 4 — Dominando Locators](./docs/04-dominando-locators.md)  
 
 ---
 

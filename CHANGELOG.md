@@ -15,7 +15,12 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 - **v0.8** - GitHub Actions
 - **v0.9** - Projeto Final
 - **v1.0** - Guia Completo
+## v0.4
 
+- Exemplos de Locators
+- Documentação do capítulo 4
+- Hierarquia de Locators
+- Boas práticas de seleção
 ## v0.3.1
 
 - Rebranding da série para "Engenharia de Automação com Playwright"
