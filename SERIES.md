@@ -22,8 +22,8 @@ A série foi criada para mostrar como construir automações profissionais com f
 | 1 | Criando seu primeiro projeto | ✅ | Em breve | [`./examples/first-test.spec.ts`](./examples/first-test.spec.ts) |
 | 2 | Entendendo a estrutura | ✅ | Em breve | [`./docs/02-entendendo-a-estrutura.md`](./docs/02-entendendo-a-estrutura.md) |
 | 3 | Escrevendo seu primeiro teste | ✅ | Em breve | [`./examples/first-test.spec.ts`](./examples/first-test.spec.ts) |
-| 4 | Dominando Locators | 🚧 | Em desenvolvimento | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
-| 5 | Organizando um projeto Playwright | 🚧 | Em desenvolvimento | [`./examples/project-organization/`](./examples/project-organization/) |
+| 4 | Dominando Locators | ✅ | Publicado | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
+| 5 | Organizando um projeto Playwright | ✅ | Publicado | [`./examples/project-organization/`](./examples/project-organization/) |
 | 6 | Construindo Page Objects | ⬜ | Em breve | Em breve |
 | 7 | Trabalhando com Fixtures | ⬜ | Em breve | Em breve |
 | 8 | GitHub Actions | ⬜ | Em breve | Em breve |

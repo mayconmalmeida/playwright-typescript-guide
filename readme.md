@@ -52,8 +52,8 @@
 | 1 | Em breve | [`./docs/01-criando-primeiro-projeto.md`](./docs/01-criando-primeiro-projeto.md) |
 | 2 | Em breve | [`./docs/02-entendendo-a-estrutura.md`](./docs/02-entendendo-a-estrutura.md) |
 | 3 | Em breve | [`./docs/03-escrevendo-primeiro-teste.md`](./docs/03-escrevendo-primeiro-teste.md) |
-| 4 | Em desenvolvimento | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
-| 5 | 🚧 Em desenvolvimento | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
+| 4 | ✅ Publicado | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
+| 5 | ✅ Publicado | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
 
 ---
 
