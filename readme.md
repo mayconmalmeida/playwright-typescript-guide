@@ -53,6 +53,7 @@
 | 2 | Em breve | [`./docs/02-entendendo-a-estrutura.md`](./docs/02-entendendo-a-estrutura.md) |
 | 3 | Em breve | [`./docs/03-escrevendo-primeiro-teste.md`](./docs/03-escrevendo-primeiro-teste.md) |
 | 4 | Em desenvolvimento | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
+| 5 | 🚧 Em desenvolvimento | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
 
 ---
 
@@ -86,6 +87,13 @@ git clone https://github.com/mayconmalmeida/playwright-typescript-guide.git
 cd playwright-typescript-guide
 npm install
 npx playwright install --with-deps
+```
+
+Para verificar os testes e os tipos antes de contribuir:
+
+```bash
+npm test
+npx tsc --noEmit
 ```
 
 ---

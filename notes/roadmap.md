@@ -20,17 +20,17 @@
 - Locators avançados
 - Melhores práticas para encontrar elementos
 
-### v0.5 (⬜ Planejado)
+### v0.5 (✅ Concluído)
+- Organização geral do projeto
+- Refinamento da arquitetura
+
+### v0.6 (⬜ Planejado)
 - Page Objects Pattern
 - Organização do código com Page Objects
 
-### v0.6 (⬜ Planejado)
+### v0.7 (⬜ Planejado)
 - Fixtures
 - Reutilização de código com fixtures
-
-### v0.7 (⬜ Planejado)
-- Organização geral do projeto
-- Refinamento da arquitetura
 
 ### v0.8 (⬜ Planejado)
 - GitHub Actions avançado

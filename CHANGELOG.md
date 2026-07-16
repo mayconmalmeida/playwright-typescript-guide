@@ -9,12 +9,22 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 - **v0.3** - Primeiro teste
 - **v0.3.1** - Rebranding da série
 - **v0.4** - Locators
-- **v0.5** - Page Objects
-- **v0.6** - Fixtures
-- **v0.7** - Organização
+- **v0.5** - Organização
+- **v0.6** - Page Objects
+- **v0.7** - Fixtures
 - **v0.8** - GitHub Actions
 - **v0.9** - Projeto Final
 - **v1.0** - Guia Completo
+## v0.5.0
+
+### Adicionado
+
+- Capítulo 5
+- Documentação
+- Exemplos de organização
+- Comparação entre estruturas
+- Guia rápido de arquitetura
+
 ## v0.4
 
 - Exemplos de Locators

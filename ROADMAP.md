@@ -3,19 +3,19 @@
 ## Planejamento do projeto
 
 ### v0.5
+- Organização
+- Estrutura de pastas profissional
+- Guias de boas práticas de projeto
+
+### v0.6
 - Page Objects
 - Estrutura de componentes de teste
 - Exemplos de padrões de abstração
 
-### v0.6
+### v0.7
 - Fixtures
 - Configuração compartilhada para testes
 - Reutilização de dados e contexto de teste
-
-### v0.7
-- Organização
-- Estrutura de pastas profissional
-- Guias de boas práticas de projeto
 
 ### v0.8
 - GitHub Actions
