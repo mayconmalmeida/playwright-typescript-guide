@@ -47,13 +47,20 @@
 
 # 📚 Comece por aqui
 
-| Capítulo | Artigo | Código |
-|----------|--------|--------|
-| 1 | Em breve | [`./docs/01-criando-primeiro-projeto.md`](./docs/01-criando-primeiro-projeto.md) |
-| 2 | Em breve | [`./docs/02-entendendo-a-estrutura.md`](./docs/02-entendendo-a-estrutura.md) |
-| 3 | Em breve | [`./docs/03-escrevendo-primeiro-teste.md`](./docs/03-escrevendo-primeiro-teste.md) |
-| 4 | ✅ Publicado | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
-| 5 | ✅ Publicado | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
+Todos os capítulos publicados podem ser acessados em: [mayconmalicheskidealmeida.vercel.app/serie-playwright](https://mayconmalicheskidealmeida.vercel.app/serie-playwright)
+
+| Capítulo | Blog | Código |
+|----------|------|--------|
+| 1 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/criando-projeto-playwright-typescript) | [`./docs/01-criando-primeiro-projeto.md`](./docs/01-criando-primeiro-projeto.md) |
+| 2 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/entendendo-estrutura-projeto-playwright) | [`./docs/02-entendendo-a-estrutura.md`](./docs/02-entendendo-a-estrutura.md) |
+| 3 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/primeiro-teste-automatizado-playwright) | [`./docs/03-escrevendo-primeiro-teste.md`](./docs/03-escrevendo-primeiro-teste.md) |
+| 4 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/dominando-locators-playwright) | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
+| 5 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/organizando-um-projeto-playwright) | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
+| 6 | 🚧 Em desenvolvimento | Em breve |
+| 7 | ⏳ Em breve | Em breve |
+| 8 | ⏳ Em breve | Em breve |
+| 9 | ⏳ Em breve | Em breve |
+| 10 | ⏳ Em breve | Em breve |
 
 ---
 
