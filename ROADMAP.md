@@ -8,11 +8,13 @@
 - Guias de boas práticas de projeto
 
 ### v0.6
+- ✅ Publicado
 - Page Objects
 - Estrutura de componentes de teste
 - Exemplos de padrões de abstração
 
 ### v0.7
+- ⏳ Em breve
 - Fixtures
 - Configuração compartilhada para testes
 - Reutilização de dados e contexto de teste

@@ -2,19 +2,20 @@
 
 Todos os changes importantes deste projeto serão documentados neste arquivo.
 
-## Roadmap
+## v0.6.0
 
-- **v0.1** - Inicialização do projeto
-- **v0.2** - Estrutura do projeto
-- **v0.3** - Primeiro teste
-- **v0.3.1** - Rebranding da série
-- **v0.4** - Locators
-- **v0.5** - Organização
-- **v0.6** - Page Objects
-- **v0.7** - Fixtures
-- **v0.8** - GitHub Actions
-- **v0.9** - Projeto Final
-- **v1.0** - Guia Completo
+### Adicionado
+
+- Documentação do Capítulo 6
+- Exemplo Before vs After
+- `LoginPage`
+- `DashboardPage`
+- `NavbarComponent`
+- `ToastComponent`
+- `ConfirmationModalComponent`
+- Política de assertions
+- Diagrama de Page Objects
+
 ## v0.5.0
 
 ### Adicionado
