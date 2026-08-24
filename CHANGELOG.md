@@ -2,6 +2,16 @@
 
 Todos os changes importantes deste projeto serão documentados neste arquivo.
 
+## Em desenvolvimento
+
+### Adicionado
+
+- Documentação do Capítulo 7 sobre Fixtures
+- Comparação Before vs After com contexto autenticado
+- Fixtures tipadas para Pages, dados e usuário autenticado
+- Exemplo explícito do ciclo de setup, `use()` e teardown
+- Diagrama de responsabilidades entre testes, Fixtures, Pages, Components, Interface e dados
+
 ## v0.6.0
 
 ### Adicionado

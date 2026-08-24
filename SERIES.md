@@ -25,7 +25,7 @@ A série foi criada para mostrar como construir automações profissionais com f
 | 4 | Dominando Locators | ✅ | Publicado | [`./docs/04-dominando-locators.md`](./docs/04-dominando-locators.md) |
 | 5 | Organizando um projeto Playwright | ✅ | Publicado | [`./examples/project-organization/`](./examples/project-organization/) |
 | 6 | Construindo Page Objects | ✅ | Publicado | [Documentação](./docs/06-construindo-page-objects.md) · [Exemplos](./examples/page-objects/) |
-| 7 | Trabalhando com Fixtures | ⏳ | Em breve | Em breve |
+| 7 | Trabalhando com Fixtures | 🚧 Em desenvolvimento | Em desenvolvimento | [Documentação](./docs/07-trabalhando-com-fixtures.md) · [Exemplos](./examples/fixtures/) |
 | 8 | GitHub Actions | ⬜ | Em breve | Em breve |
 | 9 | Engenharia de Automação | ⬜ | Em breve | Em breve |
 | 10 | Projeto Final | ⬜ | Em breve | Em breve |

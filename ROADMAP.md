@@ -14,7 +14,7 @@
 - Exemplos de padrões de abstração
 
 ### v0.7
-- ⏳ Em breve
+- 🚧 Em desenvolvimento
 - Fixtures
 - Configuração compartilhada para testes
 - Reutilização de dados e contexto de teste
