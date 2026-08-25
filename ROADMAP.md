@@ -14,12 +14,13 @@
 - Exemplos de padrões de abstração
 
 ### v0.7
-- 🚧 Em desenvolvimento
+- ✅ Publicado
 - Fixtures
 - Configuração compartilhada para testes
 - Reutilização de dados e contexto de teste
 
 ### v0.8
+- ⏳ Em breve
 - GitHub Actions
 - Integração contínua
 - Relatórios automáticos
