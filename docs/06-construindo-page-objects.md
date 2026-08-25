@@ -99,4 +99,4 @@ Crie um cenário de logout: inicie a saída pelo `DashboardPage`, confirme pelo 
 
 ## Próximo capítulo
 
-➡ Capítulo 7 — Trabalhando com Fixtures (em breve)
+➡ [Capítulo 7 — Trabalhando com Fixtures](./07-trabalhando-com-fixtures.md)

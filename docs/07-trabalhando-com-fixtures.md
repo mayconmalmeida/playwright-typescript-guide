@@ -2,7 +2,7 @@
 
 ## Capítulo 7 — Trabalhando com Fixtures
 
-**Status:** 🚧 Em desenvolvimento  
+**Status:** ✅ Publicado
 **Nível:** Intermediário  
 **Pré-requisitos:** Capítulos 1 a 6  
 **Objetivo:** organizar contexto, dependências e preparação sem esconder o comportamento dos testes.
@@ -231,4 +231,3 @@ Crie um segundo usuário em `users.data.ts` e permita sobrescrever a opção `us
 ## Próximo capítulo
 
 ➡ Capítulo 8 — GitHub Actions, conforme definido no roadmap.
-
