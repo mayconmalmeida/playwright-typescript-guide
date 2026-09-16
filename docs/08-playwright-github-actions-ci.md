@@ -2,7 +2,7 @@
 
 ## Capítulo 8 — Rodando Playwright no GitHub Actions: do teste local a um pipeline de CI confiável
 
-**Status:** 🟡 Implementado localmente — publicação pendente de revisão
+**Status:** ✅ Publicado
 
 **Nível:** Intermediário
 
@@ -299,9 +299,7 @@ Versões consultadas em setembro de 2026: `checkout@v7`, `setup-node@v7` e `uplo
 
 ## Artigo no blog
 
-O artigo correspondente ainda não foi publicado. Não apontamos para URL provisória.
-
-`BLOG_CHAPTER_08_LINK = PENDING_PUBLICATION`
+Leia também o artigo editorial: [Rodando Playwright no GitHub Actions: do teste local a um pipeline de CI confiável](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-github-actions-ci).
 
 ## Capítulo anterior
 

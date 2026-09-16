@@ -6,7 +6,7 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 
 ### Adicionado
 
-- Documentação e exemplos locais do Capítulo 8 sobre GitHub Actions e CI investigável
+- Documentação e exemplos publicados do Capítulo 8 sobre GitHub Actions e CI investigável
 - Workflows didáticos mínimo e recomendado, sem ativar um novo workflow no repositório
 - Configuração Playwright para CI, HTML report, traces, retries e workers controlados
 - Troubleshooting de diferenças entre ambiente local e runner Linux

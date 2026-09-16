@@ -20,7 +20,7 @@
 - Reutilização de dados e contexto de teste
 
 ### v0.8
-- 🟡 Implementado localmente — publicação pendente de revisão
+- ✅ Publicado
 - GitHub Actions
 - Integração contínua
 - Relatórios automáticos
