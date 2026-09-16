@@ -230,4 +230,4 @@ Crie um segundo usuário em `users.data.ts` e permita sobrescrever a opção `us
 
 ## Próximo capítulo
 
-➡ Capítulo 8 — GitHub Actions, conforme definido no roadmap.
+➡ [Capítulo 8 — Rodando Playwright no GitHub Actions](./08-playwright-github-actions-ci.md)

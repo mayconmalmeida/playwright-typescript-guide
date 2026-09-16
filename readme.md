@@ -58,7 +58,7 @@ Todos os capítulos publicados podem ser acessados em: [mayconmalicheskidealmeid
 | 5 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/organizando-um-projeto-playwright) | [`./docs/05-organizando-projeto-playwright.md`](./docs/05-organizando-projeto-playwright.md) |
 | 6 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/page-object-model-playwright-typescript) | [Documentação](./docs/06-construindo-page-objects.md) · [Exemplos](./examples/page-objects/) |
 | 7 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/fixtures-playwright-typescript) | [Documentação](./docs/07-trabalhando-com-fixtures.md) · [Exemplos](./examples/fixtures/) |
-| 8 | ⏳ Em breve | Em breve |
+| 8 | 🟡 Artigo pendente | [Documentação](./docs/08-playwright-github-actions-ci.md) · [Exemplos](./examples/ci/) |
 | 9 | ⏳ Em breve | Em breve |
 | 10 | ⏳ Em breve | Em breve |
 
