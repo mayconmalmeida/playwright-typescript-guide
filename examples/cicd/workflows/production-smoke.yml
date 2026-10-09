@@ -1,0 +1,114 @@
+# Smoke pós-deploy em produção: executa a suíte somente de leitura
+# DEPOIS que a plataforma concluiu o deploy.
+#
+# Isto é detecção, não prevenção: quando falha, o deploy já aconteceu.
+# O resultado é um sinal para investigar e decidir por rollback — não há rollback automático aqui.
+
+name: Production Smoke
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      expected_version:
+        description: SHA que produção deveria servir (opcional)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# Execuções de produção não se cancelam: cada deploy merece seu próprio resultado.
+concurrency:
+  group: production-smoke
+  cancel-in-progress: false
+
+env:
+  PLAYWRIGHT_CONFIG: examples/cicd/playwright.config.ts
+  EXAMPLE_DIR: examples/cicd
+
+jobs:
+  smoke-production:
+    name: Smoke tests (production)
+    # Nome do ambiente varia por plataforma; na Vercel começa com "Production".
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       startsWith(github.event.deployment.environment, 'production'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Domínio público configurado em Settings → Secrets and variables → Actions → Variables.
+      # É configuração, não credencial. Sem ele, o job falha em vez de adivinhar.
+      PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+      # Só faz sentido se o health check da aplicação expõe a versão implantada.
+      EXPECTED_VERSION: ${{ github.event.deployment.sha || inputs.expected_version }}
+    steps:
+      - name: Require production URL
+        run: |
+          if [ -z "$PRODUCTION_URL" ]; then
+            echo "::error title=Configuração ausente::Defina a variable PRODUCTION_URL do repositório."
+            exit 1
+          fi
+
+      # Os testes vêm do commit implantado (deployment) ou da branch escolhida (manual).
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # PLAYWRIGHT_TARGET_ENV=production faz o config excluir testes @write.
+      - name: Run read-only smoke tests
+        run: npx playwright test --config="$PLAYWRIGHT_CONFIG"
+        env:
+          PLAYWRIGHT_TARGET_ENV: production
+          PLAYWRIGHT_BASE_URL: ${{ env.PRODUCTION_URL }}
+          PLAYWRIGHT_EXPECTED_VERSION: ${{ vars.HEALTH_EXPOSES_VERSION == 'true' && env.EXPECTED_VERSION || '' }}
+          PLAYWRIGHT_READY_TIMEOUT_MS: '120000'
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: production-smoke-report
+          path: ${{ env.EXAMPLE_DIR }}/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Upload traces and screenshots
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: production-smoke-test-results
+          path: ${{ env.EXAMPLE_DIR }}/test-results/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Write investigation summary
+        if: ${{ failure() }}
+        run: |
+          {
+            echo "## Smoke pós-deploy falhou"
+            echo ""
+            echo "- URL: $PRODUCTION_URL"
+            echo "- Versão esperada: ${EXPECTED_VERSION:-não informada}"
+            echo ""
+            echo "O deploy já está no ar. Este workflow não faz rollback."
+            echo ""
+            echo "1. Leia o log: falha em [readiness] indica ambiente indisponível, não regressão."
+            echo "2. Baixe production-smoke-report e production-smoke-test-results e abra o trace."
+            echo "3. Confirme o impacto para usuários antes de decidir."
+            echo "4. Se confirmado, faça rollback pela plataforma de deploy e registre a decisão."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,96 @@
+# Valida um preview JÁ implantado por uma plataforma externa (ex.: Vercel, Netlify).
+# A plataforma publica o preview e cria um evento deployment_status no GitHub;
+# este workflow reage a ele. Se a plataforma não cria deployments no GitHub,
+# use o disparo manual informando a URL.
+#
+# Não existe fallback: sem URL de preview, o job falha. Ele nunca aponta para produção.
+
+name: Preview Validation
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      preview_url:
+        description: URL https do preview já implantado
+        required: true
+        type: string
+
+# O job executa o código do commit implantado. Por isso: somente leitura e nenhum secret.
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-validation-${{ github.event.deployment.sha || github.ref }}
+  cancel-in-progress: true
+
+env:
+  PLAYWRIGHT_CONFIG: examples/cicd/playwright.config.ts
+  EXAMPLE_DIR: examples/cicd
+
+jobs:
+  smoke-preview:
+    name: Smoke tests (preview)
+    # deployment_status dispara para todo estado (pending, success, failure...) e todo ambiente.
+    # O nome do ambiente varia por plataforma; na Vercel começa com "Preview".
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       startsWith(github.event.deployment.environment, 'preview'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Dados do evento entram por variável de ambiente, nunca interpolados no script.
+      PREVIEW_URL: ${{ github.event.deployment_status.environment_url || inputs.preview_url }}
+    steps:
+      - name: Require preview URL
+        run: |
+          if [ -z "$PREVIEW_URL" ]; then
+            echo "::error title=Preview ausente::O evento não trouxe environment_url. Nenhum teste será executado."
+            exit 1
+          fi
+          echo "Preview: $PREVIEW_URL"
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # O global setup (readiness.ts) aguarda o health check antes dos testes.
+      # Falha nele significa "preview não ficou pronto", não regressão funcional.
+      - name: Run smoke tests against preview
+        run: npx playwright test --config="$PLAYWRIGHT_CONFIG"
+        env:
+          PLAYWRIGHT_TARGET_ENV: preview
+          PLAYWRIGHT_BASE_URL: ${{ env.PREVIEW_URL }}
+          PLAYWRIGHT_READY_TIMEOUT_MS: '180000'
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: preview-smoke-report
+          path: ${{ env.EXAMPLE_DIR }}/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload traces and screenshots
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: preview-smoke-test-results
+          path: ${{ env.EXAMPLE_DIR }}/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
