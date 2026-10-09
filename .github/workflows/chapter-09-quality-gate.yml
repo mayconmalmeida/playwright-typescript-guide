@@ -49,6 +49,7 @@ jobs:
         run: npx playwright test --config="$PLAYWRIGHT_CONFIG"
         env:
           PLAYWRIGHT_TARGET_ENV: local
+          DEMO_FAILURE: courses-500 # TEMPORÁRIO: homologação de falha, será revertido
 
       - name: Upload HTML report
         if: ${{ !cancelled() }}
