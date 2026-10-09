@@ -6,7 +6,9 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 
 ### Adicionado
 
-- Documentação e exemplos do Capítulo 9 sobre CI/CD e validação de deploy (artigo pendente de publicação)
+- Artigo do Capítulo 9 publicado no blog: [CI/CD com Playwright: validando aplicações antes e depois do deploy](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-cicd-deploy)
+- Documentação e exemplos publicados do Capítulo 9 sobre CI/CD e validação de deploy
+- Navegação e referências do Capítulo 9 sincronizadas entre README, SERIES, ROADMAP e documentação
 - Aplicação de demonstração local, smoke tests somente de leitura e exclusão de testes `@write` em produção
 - Resolução de ambiente sem URL padrão para preview/produção e readiness check antes dos testes
 - Workflows didáticos de quality gate em PR, validação de preview e smoke pós-deploy

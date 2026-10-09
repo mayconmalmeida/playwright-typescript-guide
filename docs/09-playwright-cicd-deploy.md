@@ -2,7 +2,9 @@
 
 ## Capítulo 9 — CI/CD com Playwright: validando aplicações antes e depois do deploy
 
-**Status:** 🛠️ Implementado no repositório · artigo pendente de publicação
+**Status:** ✅ Publicado
+
+**Artigo:** [CI/CD com Playwright: validando aplicações antes e depois do deploy](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-cicd-deploy)
 
 **Nível:** Intermediário/Avançado
 
@@ -544,6 +546,10 @@ APP_VERSION=abc123 PLAYWRIGHT_EXPECTED_VERSION=abc123 \
 - [GitHub — security hardening para GitHub Actions](https://docs.github.com/actions/reference/security/secure-use)
 
 As versões das Actions (`checkout@v7`, `setup-node@v7`, `upload-artifact@v7`) seguem as adotadas no Capítulo 8. Confira releases oficiais antes de copiar para outro projeto.
+
+## Artigo no blog
+
+Leia também o artigo editorial: [CI/CD com Playwright: validando aplicações antes e depois do deploy](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-cicd-deploy).
 
 ## Capítulo anterior
 

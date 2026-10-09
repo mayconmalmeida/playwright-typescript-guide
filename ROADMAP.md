@@ -26,7 +26,7 @@
 - Relatórios automáticos
 
 ### v0.9
-- 🛠️ Implementado no repositório · artigo pendente
+- ✅ Publicado
 - CI/CD com Playwright
 - Smoke tests e quality gates antes do merge
 - Validação de preview e pós-deploy em produção
