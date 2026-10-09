@@ -409,7 +409,7 @@ use: {
 
 - **`retries: 0`.** No Capítulo 8, retries coletavam evidência de instabilidade. Em um gate de liberação, um teste que só passa na segunda tentativa é sinal de problema. Se o ambiente demora a subir, quem espera é o readiness, não o retry.
 - **`trace: 'retain-on-failure'`.** Sem retries, `on-first-retry` nunca gravaria nada.
-- **Reporter `github`** cria anotações no PR apontando o arquivo e a linha da falha.
+- **Reporter `github`** publica no run um resumo da execução como anotação, com os testes que falharam.
 - **Artifacts:** o HTML report sobe sempre que a execução não foi cancelada; `test-results/` (traces e screenshots) sobe em falha.
 - **`outputDir: './test-results'` explícito.** O `outputFolder` do HTML report é relativo ao arquivo de config, mas o `outputDir` padrão é relativo ao `package.json`, que aqui é a raiz do repositório. Sem a linha explícita, traces e screenshots iriam para `./test-results` e o upload de `examples/cicd/test-results/` não encontraria nada. O erro só apareceria no dia em que alguém precisasse do trace.
 - **Exit code:** `npx playwright test` termina com código diferente de zero quando algum teste falha. É isso que faz o job e o check falharem.
@@ -451,9 +451,30 @@ O exemplo **não** implementa rollback automático. Ele entrega o sinal; a decis
 
 Rollback automático baseado em smoke é possível, mas exige confiança alta nos testes. Um falso positivo derrubaria uma versão saudável. Comece com alerta e decisão humana.
 
+## Homologação no GitHub Actions
+
+Os três arquivos em [`examples/cicd/workflows/`](../examples/cicd/workflows/) são **didáticos**: ficam fora de `.github/workflows/` e não executam sozinhos. Para comprovar o gate de PR em execução real, este repositório tem um workflow **operacional**, [`.github/workflows/chapter-09-quality-gate.yml`](../.github/workflows/chapter-09-quality-gate.yml). O conteúdo é idêntico ao de `pull-request-gate.yml`; mudam só um cabeçalho de comentário e o `name` (`Chapter 09 Quality Gate`).
+
+| Item | Situação |
+|---|---|
+| `pull-request-gate.yml` (via workflow operacional) | ✅ executado no GitHub Actions |
+| Job `Quality Gate` | ✅ executado; aprova e reprova conforme o smoke |
+| Required status check `Quality Gate` | ❌ não configurado: depende de ruleset/proteção da `main` |
+| `preview-validation.yml` | ❌ não executado remotamente: exige plataforma de preview |
+| `production-smoke.yml` | ❌ não executado remotamente: exige deploy real e `PRODUCTION_URL` |
+
+Execuções registradas no PR [#1](https://github.com/mayconmalmeida/playwright-typescript-guide/pull/1):
+
+| Cenário | Commit | Run | Smoke | Quality Gate | Artifacts |
+|---|---|---|---|---|---|
+| Código normal | `2b00385` | [37941729389](https://github.com/mayconmalmeida/playwright-typescript-guide/actions/runs/37941729389) | ✅ 7 passed, 1 skipped | ✅ success | `pr-smoke-report` |
+| Regressão simulada (`DEMO_FAILURE=courses-500`, revertida em seguida) | `e24d5d7` | [37945003835](https://github.com/mayconmalmeida/playwright-typescript-guide/actions/runs/37945003835) | ❌ 2 failed, exit code 1 | ❌ failure | `pr-smoke-report`, `pr-smoke-test-results` |
+
+A segunda execução comprova a cadeia até onde o repositório controla: teste falhou → passo terminou com exit code 1 → job `Smoke tests` falhou → job `Quality Gate` falhou com a anotação "Smoke tests terminaram como 'failure'" → traces e screenshots foram preservados. O próximo elo, impedir o merge, só passa a existir quando `Quality Gate` é marcado como obrigatório. Isso não foi feito neste repositório.
+
 ## Limitações reais desta implementação
 
-- **Os workflows não executam neste repositório.** Ficam em `examples/cicd/workflows/` como o Capítulo 8. A validação feita foi de sintaxe YAML e schema de workflow, não uma execução no GitHub Actions.
+- **Apenas o gate de PR foi executado no GitHub Actions** (veja a seção anterior). Os workflows de preview e produção foram validados apenas por sintaxe YAML e schema.
 - **Nenhuma integração com Vercel ou outra plataforma foi testada.** A lógica de `deployment_status` segue a documentação de eventos do GitHub; nomes de ambiente e URLs variam por plataforma.
 - **Proteção de branch e de environment não foram configuradas** aqui. São passos manuais descritos acima.
 - **A aplicação de demonstração não tem build, banco ou autenticação.** Em uma aplicação real, o preview efêmero no runner exige o comando de build e dependências próprias.

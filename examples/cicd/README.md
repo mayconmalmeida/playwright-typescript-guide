@@ -60,4 +60,4 @@ No PowerShell, defina variáveis com `$env:DEMO_FAILURE = 'courses-500'` e remov
 
 ## Workflows
 
-Os YAMLs ficam fora de `.github/workflows/` e não executam neste repositório. Para usá-los, copie para `.github/workflows/` e ajuste `PLAYWRIGHT_CONFIG` e os nomes de ambiente da sua plataforma. Bloqueio de merge e de deploy depende de configuração no GitHub: veja a seção de quality gates do capítulo.
+Os YAMLs ficam fora de `.github/workflows/` e não executam sozinhos. A exceção é o gate de PR: uma cópia operacional, [`.github/workflows/chapter-09-quality-gate.yml`](../../.github/workflows/chapter-09-quality-gate.yml), roda em cada pull request deste repositório. Preview e produção continuam somente didáticos. Para usá-los, copie para `.github/workflows/` e ajuste `PLAYWRIGHT_CONFIG` e os nomes de ambiente da sua plataforma. Bloqueio de merge e de deploy depende de configuração no GitHub: veja a seção de quality gates do capítulo.
