@@ -6,6 +6,12 @@ Todos os changes importantes deste projeto serão documentados neste arquivo.
 
 ### Adicionado
 
+- Documentação e exemplos do Capítulo 9 sobre CI/CD e validação de deploy (artigo pendente de publicação)
+- Aplicação de demonstração local, smoke tests somente de leitura e exclusão de testes `@write` em produção
+- Resolução de ambiente sem URL padrão para preview/produção e readiness check antes dos testes
+- Workflows didáticos de quality gate em PR, validação de preview e smoke pós-deploy
+- Workflow operacional `Chapter 09 Quality Gate`, homologado no GitHub Actions com execução aprovada e reprovação controlada
+- `.gitignore` cobre relatórios gerados dentro de `examples/` e arquivos `.env`
 - Documentação e exemplos publicados do Capítulo 8 sobre GitHub Actions e CI investigável
 - Workflows didáticos mínimo e recomendado, sem ativar um novo workflow no repositório
 - Configuração Playwright para CI, HTML report, traces, retries e workers controlados

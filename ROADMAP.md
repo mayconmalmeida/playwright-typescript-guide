@@ -26,9 +26,10 @@
 - Relatórios automáticos
 
 ### v0.9
-- Engenharia de Automação
-- Arquitetura de testes avançada
-- Práticas de manutenção e qualidade
+- 🛠️ Implementado no repositório · artigo pendente
+- CI/CD com Playwright
+- Smoke tests e quality gates antes do merge
+- Validação de preview e pós-deploy em produção
 
 ### v1.0
 - Guia completo

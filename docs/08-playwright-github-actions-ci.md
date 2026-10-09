@@ -307,4 +307,4 @@ Leia também o artigo editorial: [Rodando Playwright no GitHub Actions: do teste
 
 ## Próximo capítulo
 
-➡ Capítulo 9 — Engenharia de Automação, conforme definido no roadmap.
+➡ [Capítulo 9 — CI/CD com Playwright: validando aplicações antes e depois do deploy](./09-playwright-cicd-deploy.md)

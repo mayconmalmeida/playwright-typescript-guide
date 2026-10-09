@@ -1,0 +1,90 @@
+# Gate de Pull Request: sobe a aplicação dentro do runner (preview efêmero)
+# e executa os smoke tests antes do merge.
+# Não depende de plataforma de deploy nem de secrets, então é seguro para PRs de forks.
+#
+# Este workflow só BLOQUEIA o merge quando o check "Quality Gate" for marcado como
+# obrigatório em uma regra de proteção da branch main (configuração externa ao YAML).
+
+name: PR Quality Gate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-quality-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  PLAYWRIGHT_CONFIG: examples/cicd/playwright.config.ts
+  EXAMPLE_DIR: examples/cicd
+
+jobs:
+  smoke:
+    name: Smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run smoke tests
+        run: npx playwright test --config="$PLAYWRIGHT_CONFIG"
+        env:
+          PLAYWRIGHT_TARGET_ENV: local
+
+      - name: Upload HTML report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: pr-smoke-report
+          path: ${{ env.EXAMPLE_DIR }}/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload traces and screenshots
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: pr-smoke-test-results
+          path: ${{ env.EXAMPLE_DIR }}/test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # Um único check estável para marcar como obrigatório.
+  # if: always() é essencial: sem ele, este job seria "skipped" quando smoke falhasse,
+  # e um required check pulado conta como aprovado no GitHub.
+  quality-gate:
+    name: Quality Gate
+    needs: [smoke]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Evaluate required jobs
+        env:
+          SMOKE_RESULT: ${{ needs.smoke.result }}
+        run: |
+          echo "smoke: $SMOKE_RESULT"
+          if [ "$SMOKE_RESULT" != "success" ]; then
+            echo "::error title=Quality Gate::Smoke tests terminaram como '$SMOKE_RESULT'. Consulte os artifacts pr-smoke-report e pr-smoke-test-results."
+            exit 1
+          fi
+          echo "Quality Gate aprovado."

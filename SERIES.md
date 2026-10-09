@@ -27,7 +27,7 @@ A série foi criada para mostrar como construir automações profissionais com f
 | 6 | Construindo Page Objects | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/page-object-model-playwright-typescript) | [Documentação](./docs/06-construindo-page-objects.md) · [Exemplos](./examples/page-objects/) |
 | 7 | Trabalhando com Fixtures | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/fixtures-playwright-typescript) | [Documentação](./docs/07-trabalhando-com-fixtures.md) · [Exemplos](./examples/fixtures/) |
 | 8 | GitHub Actions | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-github-actions-ci) | [Documentação](./docs/08-playwright-github-actions-ci.md) · [Exemplos](./examples/ci/) |
-| 9 | Engenharia de Automação | ⬜ | Em breve | Em breve |
+| 9 | CI/CD e validação de deploy | 🛠️ Implementado | Pendente de publicação | [Documentação](./docs/09-playwright-cicd-deploy.md) · [Exemplos](./examples/cicd/) |
 | 10 | Projeto Final | ⬜ | Em breve | Em breve |
 
 ---
