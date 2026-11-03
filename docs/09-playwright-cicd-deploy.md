@@ -557,4 +557,6 @@ Leia também o artigo editorial: [CI/CD com Playwright: validando aplicações a
 
 ## Próximo capítulo
 
-➡ Capítulo 10 — Projeto Final, conforme definido no roadmap.
+➡ [Capítulo 10 — Projeto final: automação E2E da SauceDemo](./10-projeto-final-saucedemo.md)
+
+Código e documentação concluídos e homologados. A publicação na `main` aguarda revisão e merge; a publicação externa no blog está pendente.

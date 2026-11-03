@@ -28,7 +28,9 @@ A série foi criada para mostrar como construir automações profissionais com f
 | 7 | Trabalhando com Fixtures | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/fixtures-playwright-typescript) | [Documentação](./docs/07-trabalhando-com-fixtures.md) · [Exemplos](./examples/fixtures/) |
 | 8 | GitHub Actions | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-github-actions-ci) | [Documentação](./docs/08-playwright-github-actions-ci.md) · [Exemplos](./examples/ci/) |
 | 9 | CI/CD e validação de deploy | ✅ Publicado | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-cicd-deploy) | [Documentação](./docs/09-playwright-cicd-deploy.md) · [Exemplos](./examples/cicd/) |
-| 10 | Projeto Final | ⬜ | Em breve | Em breve |
+| 10 | Projeto final SauceDemo | ✅ Implementado e homologado | Blog pendente · [Artigo no repositório](./docs/10-projeto-final-saucedemo.md) | [Projeto final](./examples/final-project/) · [README operacional](./examples/final-project/README.md) |
+
+O Capítulo 10 conclui a jornada iniciada nos capítulos anteriores: autenticação, catálogo, carrinho e checkout de demonstração. A [homologação Windows e Linux](./docs/10-final-homologation.md) está concluída; a publicação na `main` aguarda revisão e merge. A [revisão de release](./docs/10-release-review.md) reúne as evidências e pendências editoriais. O artigo externo no blog ainda não foi publicado.
 
 ---
 

@@ -7,7 +7,12 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "test:final": "playwright test --config=examples/final-project/playwright.config.ts",
+    "test:final:list": "playwright test --config=examples/final-project/playwright.config.ts --list",
+    "test:final:smoke": "playwright test --config=examples/final-project/playwright.config.ts --grep @smoke",
+    "test:final:report": "playwright show-report examples/final-project/playwright-report",
+    "typecheck:final": "tsc --project examples/final-project/tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -23,6 +28,7 @@
   "homepage": "https://github.com/mayconmalmeida/playwright-typescript-guide#readme",
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.0.1"
+    "@types/node": "^26.0.1",
+    "typescript": "^7.0.2"
   }
 }

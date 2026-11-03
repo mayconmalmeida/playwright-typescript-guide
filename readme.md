@@ -60,7 +60,9 @@ Todos os capítulos publicados podem ser acessados em: [mayconmalicheskidealmeid
 | 7 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/fixtures-playwright-typescript) | [Documentação](./docs/07-trabalhando-com-fixtures.md) · [Exemplos](./examples/fixtures/) |
 | 8 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-github-actions-ci) | [Documentação](./docs/08-playwright-github-actions-ci.md) · [Exemplos](./examples/ci/) |
 | 9 | [✅ Ler capítulo](https://mayconmalicheskidealmeida.vercel.app/artigos/playwright-cicd-deploy) | [Documentação](./docs/09-playwright-cicd-deploy.md) · [Exemplos](./examples/cicd/) |
-| 10 | ⏳ Em breve | Em breve |
+| 10 | Publicação pendente | [Artigo no repositório](./docs/10-projeto-final-saucedemo.md) · [Projeto final](./examples/final-project/) · [README operacional](./examples/final-project/README.md) |
+
+O Capítulo 10 está implementado e homologado em Windows e Linux. Sua integração à `main` depende de revisão e merge; a publicação externa no blog está pendente. Consulte o [relatório de homologação](./docs/10-final-homologation.md) e a [revisão de release](./docs/10-release-review.md).
 
 ---
 
