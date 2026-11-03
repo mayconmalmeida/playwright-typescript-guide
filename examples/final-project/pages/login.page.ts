@@ -21,7 +21,9 @@ export class LoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto(routes.login);
+    // Fontes externas podem manter load pendente mesmo com o formulário pronto.
+    // Os locators de interação aguardam os campos ficarem visíveis e editáveis.
+    await this.page.goto(routes.login, { waitUntil: 'domcontentloaded' });
   }
 
   async fillUsername(username: string): Promise<void> {
