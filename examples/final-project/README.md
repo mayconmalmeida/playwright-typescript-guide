@@ -1,6 +1,6 @@
 # Projeto Final — Automação E2E da SauceDemo
 
-> 🚧 **Em construção.** Esta pasta contém apenas a fundação técnica (Sprint 10.1): configuração, ambiente, readiness check e type-check. **Ainda não há testes implementados**, e o workflow de CI do projeto final ainda não existe.
+> 🚧 **Em construção.** Implementados até agora: a fundação técnica (Sprint 10.1) e os testes de autenticação (Sprint 10.2). Catálogo, carrinho e checkout ainda não têm testes, e o workflow de CI do projeto final ainda não existe.
 
 Projeto final do Capítulo 10 da série **Engenharia de Automação com Playwright**: uma suíte E2E que reúne locators, Page Objects, Fixtures e CI dos capítulos anteriores em um projeto único, reproduzível e adequado para portfólio.
 
@@ -31,15 +31,24 @@ examples/final-project/
 ├── playwright.config.ts    # ✅ configuração isolada do projeto final
 ├── tsconfig.json           # ✅ TypeScript strict, restrito a esta pasta
 ├── .env.example            # ✅ variáveis documentadas, sem valores secretos
-├── pages/                  # ⬜ Page Objects (Sprints 10.2–10.4)
-├── components/             # ⬜ header e menu lateral
-├── fixtures/               # ⬜ pages e usuário autenticado
-├── test-data/              # ⬜ usuários (somente usernames), produtos, comprador
+├── pages/
+│   └── login.page.ts       # ✅ demais páginas nas Sprints 10.3–10.4
+├── components/
+│   ├── header.component.ts     # ✅ título da página
+│   └── side-menu.component.ts  # ✅ menu lateral e logout
+├── fixtures/
+│   └── test.fixture.ts     # ✅ pages, componentes, credenciais e authenticatedPage
+├── test-data/
+│   ├── users.ts            # ✅ usernames públicos e credenciais inválidas (sem senha)
+│   ├── auth-messages.ts    # ✅ mensagens de erro da tela de login
+│   └── routes.ts           # ✅ caminhos da aplicação
 ├── utils/                  # ⬜ conversão de preços para centavos
-└── tests/                  # ⬜ auth/, catalog/, cart/, checkout/, quality/
+└── tests/
+    ├── auth/               # ✅ AUTH-01 a AUTH-07
+    └── ...                 # ⬜ catalog/, cart/, checkout/, quality/
 ```
 
-✅ existe nesta sprint · ⬜ previsto nas próximas sprints
+✅ implementado · ⬜ previsto nas próximas sprints
 
 A configuração não depende do `playwright.config.ts` da raiz nem dos exemplos dos capítulos anteriores. Relatórios e evidências ficam em `examples/final-project/playwright-report/` e `examples/final-project/test-results/`, ambos ignorados pelo Git.
 
@@ -74,7 +83,7 @@ $env:SAUCEDEMO_PASSWORD = "<senha exibida na tela de login>"
 export SAUCEDEMO_PASSWORD='<senha exibida na tela de login>'
 ```
 
-A senha só é exigida quando um teste precisa fazer login. O type-check, a listagem (`--list`) e o readiness check funcionam sem ela.
+A senha só é exigida pelos testes que fazem login com um usuário válido (AUTH-01, AUTH-02 e AUTH-05). Sem ela, esses testes **falham** com a mensagem `SAUCEDEMO_PASSWORD não definida`: não são pulados nem aprovados. O type-check, a listagem (`--list`), o readiness check e os cenários negativos funcionam sem a senha.
 
 > Traces do Playwright registram os valores digitados em campos. Um trace de falha do login conterá a senha de demonstração; não compartilhe traces de projetos que usem credenciais reais.
 
@@ -90,7 +99,21 @@ Executados na raiz do repositório:
 | `npm run test:final:smoke` | Executa somente os testes marcados com `@smoke` |
 | `npm run test:final:report` | Abre o último relatório HTML |
 
-Enquanto não houver testes, `test:final:list` e `test:final` terminam com `Error: No tests found` e exit code 1. Isso é o estado esperado da fundação, não uma suíte aprovada.
+Para executar um único cenário, filtre pelo ID: `npm run test:final -- --grep AUTH-05`.
+
+## Cenários implementados
+
+| ID | Cenário | Tag | Arquivo | Precisa da senha |
+|----|---------|-----|---------|------------------|
+| AUTH-01 | Login válido leva ao catálogo e a sessão sobrevive a um reload | `@smoke` | [`login.spec.ts`](./tests/auth/login.spec.ts) | Sim |
+| AUTH-02 | Usuário bloqueado não consegue entrar | `@regression` | [`login.spec.ts`](./tests/auth/login.spec.ts) | Sim |
+| AUTH-03 | Campos obrigatórios: username e password (parametrizado, 2 casos) | `@regression` | [`validation.spec.ts`](./tests/auth/validation.spec.ts) | Não |
+| AUTH-04 | Credenciais inválidas são rejeitadas | `@regression` | [`login.spec.ts`](./tests/auth/login.spec.ts) | Não |
+| AUTH-05 | Logout encerra a sessão e bloqueia a rota protegida | `@smoke` | [`logout.spec.ts`](./tests/auth/logout.spec.ts) | Sim |
+| AUTH-06 | Rotas protegidas sem sessão redirecionam ao login (parametrizado, 3 rotas) | `@regression` | [`protected-routes.spec.ts`](./tests/auth/protected-routes.spec.ts) | Não |
+| AUTH-07 | Mensagem de erro pode ser fechada | `@regression` | [`validation.spec.ts`](./tests/auth/validation.spec.ts) | Não |
+
+São 7 cenários e 10 testes depois da parametrização. O login acontece pela interface em cada teste que precisa dele (fixture `authenticatedPage`), sem `storageState`.
 
 ## Readiness check
 
