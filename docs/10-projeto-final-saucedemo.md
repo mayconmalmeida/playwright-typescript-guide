@@ -2,7 +2,7 @@
 
 ## Capítulo 10 — Projeto final: automação E2E da SauceDemo
 
-**Status:** 🚧 Rascunho para revisão — homologação Windows e Linux conferida na Sprint 10.7, não publicado
+**Status:** Código e documentação concluídos e homologados em Windows e Linux. Versão editorial preparada para revisão; publicação na `main` pendente de merge e publicação externa no blog pendente.
 
 **Tempo de leitura:** 20 min
 
@@ -22,7 +22,7 @@ Nos capítulos anteriores, construímos testes, escolhemos locators, organizamos
 
 O código fica em [`examples/final-project/`](../examples/final-project/). A aplicação é a [SauceDemo](https://www.saucedemo.com/), uma loja pública de demonstração. O projeto usa sua interface real; Finish simula a conclusão de um pedido, sem pagamento ou entrega reais.
 
-O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. Na Sprint 10.6, o projeto final recebeu um workflow independente para validar a suíte no Ubuntu. A Sprint 10.7 conferiu uma execução real aprovada no GitHub Actions e repetiu a homologação local; o [relatório final](./10-final-homologation.md) distingue essas evidências. Este capítulo continua como rascunho, sem publicação ou deploy.
+O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. Na Sprint 10.6, o projeto final recebeu um workflow independente para validar a suíte no Ubuntu. A Sprint 10.7, aprovada, conferiu uma execução real no GitHub Actions e repetiu a homologação local; o [relatório final](./10-final-homologation.md) distingue essas evidências. A Sprint 10.8 prepara a revisão editorial e a navegação da série; a [revisão de release](./10-release-review.md) registra o que será avaliado antes da integração à `main`.
 
 ## O que estamos construindo e por quê?
 
@@ -212,7 +212,7 @@ Traces podem conter senha e todos os dados digitados nos formulários, além de 
 
 O workflow [`chapter-10-final-project.yml`](../.github/workflows/chapter-10-final-project.yml) usa Ubuntu 24.04 e Node.js 22.23.4 fixado. Faz checkout com token somente de leitura, usa cache npm pelo lockfile, executa `npm ci` e instala Chromium com as dependências Linux. Preserva os workflows dos capítulos anteriores e não realiza deploy.
 
-É acionado por push na branch `feat/playwright-chapter-10-final-project` e por PRs que alterem o projeto final, este rascunho, o próprio workflow ou os manifests npm. O filtro evita executar a suíte em qualquer alteração do repositório. Como checks filtrados podem ficar pendentes, exigir esse check globalmente requer uma política compatível com os caminhos. `workflow_dispatch` está declarado, mas a execução manual pela interface depende de o arquivo existir na branch padrão; enquanto estiver apenas nesta branch, o push dispara o job.
+É acionado por push na branch `feat/playwright-chapter-10-final-project` e por PRs que alterem o projeto final, o artigo deste capítulo, o próprio workflow ou os manifests npm. O filtro evita executar a suíte em qualquer alteração do repositório. Como checks filtrados podem ficar pendentes, exigir esse check globalmente requer uma política compatível com os caminhos. `workflow_dispatch` está declarado, mas a execução manual pela interface depende de o arquivo existir na branch padrão; enquanto estiver apenas nesta branch, o push dispara o job.
 
 ### Credencial e aprovação explícita
 
@@ -265,7 +265,9 @@ O projeto conecta os conceitos dos capítulos anteriores em 35 testes de interfa
 
 ## Próximos passos
 
-A Sprint 10.7 concluiu a auditoria técnica e registrou a recomendação no [relatório de homologação](./10-final-homologation.md), que aguarda revisão. A Sprint 10.8 exige nova autorização para os ajustes de publicação listados nesse relatório. Este arquivo permanece um rascunho e não altera o status editorial dos capítulos publicados.
+Depois de executar a suíte, compare a preparação das fixtures com as assertions de cada cenário e use o [README operacional](../examples/final-project/README.md) para consultar comandos, matriz de cobertura e diagnóstico.
+
+A homologação da Sprint 10.7 está aprovada. A versão editorial da Sprint 10.8 segue para revisão em PR draft, conforme a [revisão de release](./10-release-review.md). A publicação na `main` depende de merge autorizado; a publicação externa no blog permanece pendente. Este projeto não requer deploy da SauceDemo, que já é uma aplicação pública de terceiros.
 
 ⬅ [Capítulo 9 — Playwright em CI/CD e Deploy](./09-playwright-cicd-deploy.md)
 

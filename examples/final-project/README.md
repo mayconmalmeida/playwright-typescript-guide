@@ -1,10 +1,10 @@
 # Projeto Final — Automação E2E da SauceDemo
 
-> 🚧 **Rascunho para revisão.** Implementadas as Sprints 10.1 a 10.6, incluindo o workflow dedicado e o Quality Gate. A Sprint 10.7 confirmou a homologação Windows e Linux; consulte o [relatório final](../../docs/10-final-homologation.md). Capítulo não publicado.
+> **Código e documentação concluídos e homologados.** A Sprint 10.7 está aprovada; consulte o [relatório final](../../docs/10-final-homologation.md). A Sprint 10.8 prepara a versão editorial e a navegação para revisão em PR draft. Publicação na `main` pendente de merge; publicação externa no blog pendente.
 
 Projeto final do Capítulo 10 da série **Engenharia de Automação com Playwright**: uma suíte E2E que reúne locators, Page Objects e Fixtures dos capítulos anteriores em um projeto único, reproduzível e adequado para portfólio. O CI valida a suíte sem realizar deploy.
 
-O fluxo coberto é **Login → Catálogo → Carrinho → Checkout → Confirmação**. O [rascunho do Capítulo 10](../../docs/10-projeto-final-saucedemo.md) explica como as partes se conectam; este README concentra a operação local e no CI.
+O fluxo coberto é **Login → Catálogo → Carrinho → Checkout → Confirmação**. O [artigo do Capítulo 10 no repositório](../../docs/10-projeto-final-saucedemo.md) explica como as partes se conectam; este README concentra a operação local e no CI.
 
 ## Aplicação-alvo
 
@@ -290,9 +290,11 @@ Para examinar uma falha, baixe o ZIP na seção **Artifacts** da execução, ext
 
 Execuções locais Windows comprovam o comportamento nesse ambiente. A [tentativa 2 da execução 41646779044](https://github.com/mayconmalmeida/playwright-typescript-guide/actions/runs/41646779044/attempts/2), aprovada em 03/11/2026, homologou o commit `e4ac35edcf21f45ffcaa71a700f5807850c0c091` no Ubuntu 24.04 com Node.js 22.23.4 e Chromium instalado: typecheck, contratos, smoke 7/7 e suíte 41/41, sem retries ou testes funcionais ignorados. O secret foi configurado manualmente antes dessa tentativa. A Sprint 10.7 conferiu os logs e repetiu as validações locais; os resultados e limites constam no [relatório de homologação](../../docs/10-final-homologation.md). Não é necessário repetir a execução remota para comprovar esse baseline.
 
-## Próximas sprints
+## Homologação e revisão editorial
 
 | Sprint | Escopo |
 |--------|--------|
-| 10.7 | Homologação concluída tecnicamente; relatório aguardando revisão |
-| 10.8 | Documentação e publicação do Capítulo 10, mediante nova autorização |
+| 10.7 | Homologação Windows e Linux concluída e aprovada |
+| 10.8 | Versão editorial e navegação preparadas para revisão em PR draft; integração à `main` e publicação externa no blog pendentes |
+
+Consulte a [revisão de release](../../docs/10-release-review.md) para evidências, limitações e checklists de revisão e merge.
