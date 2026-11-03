@@ -1,6 +1,6 @@
 # Projeto Final — Automação E2E da SauceDemo
 
-> 🚧 **Em construção.** Implementadas as Sprints 10.1 a 10.6, incluindo o workflow dedicado e o Quality Gate. A homologação Linux depende de execução aprovada no GitHub Actions; validações Windows não a substituem. Capítulo não publicado.
+> 🚧 **Rascunho para revisão.** Implementadas as Sprints 10.1 a 10.6, incluindo o workflow dedicado e o Quality Gate. A Sprint 10.7 confirmou a homologação Windows e Linux; consulte o [relatório final](../../docs/10-final-homologation.md). Capítulo não publicado.
 
 Projeto final do Capítulo 10 da série **Engenharia de Automação com Playwright**: uma suíte E2E que reúne locators, Page Objects e Fixtures dos capítulos anteriores em um projeto único, reproduzível e adequado para portfólio. O CI valida a suíte sem realizar deploy.
 
@@ -288,11 +288,11 @@ Para examinar uma falha, baixe o ZIP na seção **Artifacts** da execução, ext
 
 ### Windows e homologação Linux
 
-Execuções locais Windows comprovam o comportamento nesse ambiente. Somente uma execução real aprovada no Ubuntu, ligada ao commit enviado e com runtime, instalação e resultados verificados, comprova a homologação Linux. Na preparação desta sprint, o secret do repositório estava ausente; até uma execução remota aprovada, o status é **pendente de homologação Linux**. Após cadastrar o secret, use **Re-run all jobs** na execução existente. O relatório de entrega registra o resultado e o link observados no GitHub.
+Execuções locais Windows comprovam o comportamento nesse ambiente. A [tentativa 2 da execução 41646779044](https://github.com/mayconmalmeida/playwright-typescript-guide/actions/runs/41646779044/attempts/2), aprovada em 03/11/2026, homologou o commit `e4ac35edcf21f45ffcaa71a700f5807850c0c091` no Ubuntu 24.04 com Node.js 22.23.4 e Chromium instalado: typecheck, contratos, smoke 7/7 e suíte 41/41, sem retries ou testes funcionais ignorados. O secret foi configurado manualmente antes dessa tentativa. A Sprint 10.7 conferiu os logs e repetiu as validações locais; os resultados e limites constam no [relatório de homologação](../../docs/10-final-homologation.md). Não é necessário repetir a execução remota para comprovar esse baseline.
 
 ## Próximas sprints
 
 | Sprint | Escopo |
 |--------|--------|
-| 10.7 | Homologação: execuções reproduzíveis e evidências |
-| 10.8 | Documentação e publicação do Capítulo 10 |
+| 10.7 | Homologação concluída tecnicamente; relatório aguardando revisão |
+| 10.8 | Documentação e publicação do Capítulo 10, mediante nova autorização |

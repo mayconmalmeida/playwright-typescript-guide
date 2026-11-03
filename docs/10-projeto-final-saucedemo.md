@@ -2,7 +2,7 @@
 
 ## Capítulo 10 — Projeto final: automação E2E da SauceDemo
 
-**Status:** 🚧 Rascunho para revisão — conteúdo até a Sprint 10.6, homologação Linux pendente de execução aprovada, não publicado
+**Status:** 🚧 Rascunho para revisão — homologação Windows e Linux conferida na Sprint 10.7, não publicado
 
 **Tempo de leitura:** 20 min
 
@@ -22,7 +22,7 @@ Nos capítulos anteriores, construímos testes, escolhemos locators, organizamos
 
 O código fica em [`examples/final-project/`](../examples/final-project/). A aplicação é a [SauceDemo](https://www.saucedemo.com/), uma loja pública de demonstração. O projeto usa sua interface real; Finish simula a conclusão de um pedido, sem pagamento ou entrega reais.
 
-O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. Na Sprint 10.6, o projeto final recebe um workflow independente para validar a suíte no Ubuntu. Aprovação local no Windows não comprova homologação Linux: precisamos conferir uma execução real aprovada no GitHub Actions. Este capítulo continua como rascunho, sem publicação ou deploy.
+O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. Na Sprint 10.6, o projeto final recebeu um workflow independente para validar a suíte no Ubuntu. A Sprint 10.7 conferiu uma execução real aprovada no GitHub Actions e repetiu a homologação local; o [relatório final](./10-final-homologation.md) distingue essas evidências. Este capítulo continua como rascunho, sem publicação ou deploy.
 
 ## O que estamos construindo e por quê?
 
@@ -230,7 +230,7 @@ Em falhas após a listagem, somente uma pasta preparada para upload é enviada c
 
 Baixe o ZIP em **Artifacts**, extraia e abra `playwright-report/index.html` preservando a pasta `data`; confira também `screenshots/`. Pessoas com acesso ao repositório podem acessar esses arquivos conforme as permissões do GitHub. Não há publicação em páginas públicas nem comentários automáticos com traces. Use dados fictícios e revise evidências; a sanitização da senha não remove qualquer dado pessoal possível. Falhas antes dos testes podem não gerar anexos.
 
-Na preparação desta sprint, o secret remoto estava ausente. Depois de configurá-lo, use **Re-run all jobs**. A homologação Linux permanece pendente até conferir uma execução Ubuntu aprovada, seu commit, runtime, instalação, smoke 7/7 e suíte 41/41 sem retries. Os resultados Windows e a validação do YAML são evidências locais; o relatório de entrega registra separadamente o resultado remoto e seu link.
+A [tentativa 2 da execução 41646779044](https://github.com/mayconmalmeida/playwright-typescript-guide/actions/runs/41646779044/attempts/2) foi aprovada em 03/11/2026, após configuração manual do secret, para o commit `e4ac35edcf21f45ffcaa71a700f5807850c0c091`. Os logs conferidos na Sprint 10.7 mostram Ubuntu 24.04, Node.js 22.23.4, instalação do Chromium, typecheck e contratos aprovados, smoke 7/7 e suíte 41/41, sem retries ou testes funcionais ignorados. A homologação Linux desse baseline está concluída. O [relatório de homologação](./10-final-homologation.md) registra também os resultados Windows e as limitações; não há necessidade de reexecutar o workflow apenas para repetir essa evidência.
 
 ## Quando utilizar e quais são os limites?
 
@@ -265,7 +265,7 @@ O projeto conecta os conceitos dos capítulos anteriores em 35 testes de interfa
 
 ## Próximos passos
 
-A Sprint 10.6 implementa o workflow e o Quality Gate; sua homologação Linux exige execução remota aprovada e configuração manual do secret. A Sprint 10.7 depende de nova autorização. Este arquivo permanece um rascunho e não altera o status editorial dos capítulos publicados.
+A Sprint 10.7 concluiu a auditoria técnica e registrou a recomendação no [relatório de homologação](./10-final-homologation.md), que aguarda revisão. A Sprint 10.8 exige nova autorização para os ajustes de publicação listados nesse relatório. Este arquivo permanece um rascunho e não altera o status editorial dos capítulos publicados.
 
 ⬅ [Capítulo 9 — Playwright em CI/CD e Deploy](./09-playwright-cicd-deploy.md)
 
