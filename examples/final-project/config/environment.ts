@@ -1,6 +1,7 @@
 // Resolve para onde a suíte aponta e com quais credenciais.
 // Regra central: a senha nunca tem valor padrão no código e nunca é impressa.
-// A URL e o username são públicos; a senha é lida do ambiente somente quando um teste precisa dela.
+// A URL recebida pode conter dados sensíveis: erros não devem reproduzir sua entrada.
+// A senha é lida do ambiente somente quando um teste precisa dela.
 
 export const DEFAULT_BASE_URL = 'https://www.saucedemo.com/';
 // Usuário público exibido na própria tela de login da SauceDemo.
@@ -24,12 +25,12 @@ export function resolveEnvironment(env: NodeJS.ProcessEnv = process.env): Enviro
   try {
     url = new URL(rawUrl);
   } catch {
-    throw new Error(`SAUCEDEMO_BASE_URL inválida: "${rawUrl}". Informe uma URL absoluta, como ${DEFAULT_BASE_URL}.`);
+    throw new Error(`SAUCEDEMO_BASE_URL inválida. Informe uma URL absoluta, como ${DEFAULT_BASE_URL}.`);
   }
 
   // http só faz sentido para uma cópia local da aplicação.
   if (url.protocol !== 'https:' && !(url.protocol === 'http:' && LOOPBACK_HOSTS.includes(url.hostname))) {
-    throw new Error(`SAUCEDEMO_BASE_URL deve usar https (http apenas em localhost). Recebido: "${rawUrl}".`);
+    throw new Error('SAUCEDEMO_BASE_URL deve usar https (http apenas em localhost).');
   }
 
   // As rotas da SauceDemo ficam na raiz (/inventory.html, /cart.html...): apenas a origem é usada.

@@ -2,7 +2,13 @@ import { expect, test } from '../../fixtures/test.fixture';
 import { authMessages } from '../../test-data/auth-messages';
 import { routes } from '../../test-data/routes';
 
-const protectedRoutes = [routes.inventory, routes.cart, routes.checkoutInformation];
+const protectedRoutes = [
+  routes.inventory,
+  routes.cart,
+  routes.checkoutInformation,
+  routes.checkoutOverview,
+  routes.checkoutComplete,
+];
 
 test.describe('rotas protegidas sem sessão', () => {
   for (const route of protectedRoutes) {
