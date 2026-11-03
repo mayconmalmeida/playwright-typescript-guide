@@ -1,0 +1,122 @@
+name: Chapter 10 SauceDemo Quality Gate
+
+on:
+  push:
+    branches: [feat/playwright-chapter-10-final-project]
+    paths:
+      - 'examples/final-project/**'
+      - 'docs/10-projeto-final-saucedemo.md'
+      - '.github/workflows/chapter-10-final-project.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    paths:
+      - 'examples/final-project/**'
+      - 'docs/10-projeto-final-saucedemo.md'
+      - '.github/workflows/chapter-10-final-project.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chapter-10-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    name: Chapter 10 Quality Gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    env:
+      CI: 'true'
+    steps:
+      # Forks e Dependabot não recebem secrets: falha explícita, sem executar código do PR.
+      - name: Reject untrusted pull requests
+        if: >-
+          github.event_name == 'pull_request' &&
+          (github.event.pull_request.head.repo.full_name != github.repository ||
+           github.actor == 'dependabot[bot]')
+        run: |
+          echo '::error::PR de fork ou Dependabot não recebe credenciais. O gate não foi aprovado; requer revisão e execução em branch confiável.'
+          exit 1
+
+      - name: Validate required secret
+        env:
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+        run: |
+          if [ -z "$SAUCEDEMO_PASSWORD" ]; then
+            echo '::error::SAUCEDEMO_PASSWORD ausente. Configure Settings > Secrets and variables > Actions antes de executar o projeto final.'
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.23.4'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Confirm runtime
+        run: |
+          node --version
+          npm --version
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium and Linux dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Typecheck final project
+        run: npm run typecheck:final
+
+      - name: Verify quality gate rejects invalid outcomes
+        run: |
+          node examples/final-project/ci/verify-quality-gate.cjs
+          node --test examples/final-project/ci/prepare-artifacts.test.cjs
+
+      - name: List final project tests
+        id: inventory
+        run: npm run test:final:list
+
+      - name: Smoke tests (7 required, no retries)
+        run: npm run test:final:smoke -- --retries=0 --workers=2
+        env:
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+          SAUCEDEMO_EXPECTED_TESTS: '7'
+
+      - name: Full suite (41 required, no retries)
+        run: npm run test:final -- --retries=0 --workers=2
+        env:
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+          SAUCEDEMO_EXPECTED_TESTS: '41'
+
+      # O smoke falho impede a regressão, preservando suas evidências.
+      # Traces estão desativados no CI para impedir upload de credenciais.
+      - name: Prepare sanitized failure artifacts
+        id: artifacts
+        if: ${{ failure() && steps.inventory.outcome == 'success' }}
+        run: node examples/final-project/ci/prepare-artifacts.cjs
+        env:
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+
+      - name: Upload failure report and screenshots
+        if: ${{ failure() && steps.artifacts.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: chapter-10-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: examples/final-project/test-results/ci-artifacts/
+          if-no-files-found: ignore
+          retention-days: 3

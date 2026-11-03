@@ -6,6 +6,7 @@ import { LoginPage } from '../pages/login.page';
 import { routes } from '../test-data/routes';
 
 type TestFixtures = {
+  ciEvidenceProtection: void;
   loginPage: LoginPage;
   header: HeaderComponent;
   sideMenu: SideMenuComponent;
@@ -14,6 +15,21 @@ type TestFixtures = {
 };
 
 export const test = base.extend<TestFixtures>({
+  ciEvidenceProtection: [async ({ context }, use) => {
+    if (process.env.CI) {
+      // O campo password já é mascarado pelo navegador, mas a SauceDemo também
+      // exibe sua senha pública em texto. Oculta apenas esse bloco nas evidências.
+      await context.addInitScript(() => {
+        document.addEventListener('DOMContentLoaded', () => {
+          const style = document.createElement('style');
+          style.textContent = '.login_password { visibility: hidden !important; }';
+          document.head.appendChild(style);
+        }, { once: true });
+      });
+    }
+    await use();
+  }, { auto: true }],
+
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
   },

@@ -14,7 +14,7 @@ export default defineConfig({
   forbidOnly: isCI,
 
   // Smoke é critério de liberação: um teste que só passa na segunda tentativa
-  // é sinal de instabilidade, não de sucesso. A regressão pode sobrescrever com --retries.
+  // é sinal de instabilidade, não de sucesso. O Quality Gate também rejeita retries.
   retries: 0,
   // A SauceDemo é um serviço público de terceiros: paralelismo limitado de propósito.
   workers: isCI ? 2 : 4,
@@ -28,6 +28,7 @@ export default defineConfig({
     ['list'],
     ...(isCI ? [['github'] as const] : []),
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ...(process.env.SAUCEDEMO_EXPECTED_TESTS ? [['./config/quality-gate.reporter.ts'] as const] : []),
   ],
 
   use: {
@@ -36,8 +37,9 @@ export default defineConfig({
     testIdAttribute: 'data-test',
     navigationTimeout: 15_000,
     actionTimeout: 10_000,
-    // Sem retries no smoke, 'on-first-retry' nunca gravaria nada.
-    trace: 'retain-on-failure',
+    // Traces podem conter senhas digitadas e não são gerados nem enviados pelo CI.
+    // Localmente, a evidência fica disponível para revisão manual antes de compartilhar.
+    trace: isCI ? 'off' : 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
 

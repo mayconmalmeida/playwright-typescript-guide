@@ -2,7 +2,7 @@
 
 ## Capítulo 10 — Projeto final: automação E2E da SauceDemo
 
-**Status:** 🚧 Rascunho para revisão — conteúdo até a Sprint 10.5, não publicado
+**Status:** 🚧 Rascunho para revisão — conteúdo até a Sprint 10.6, homologação Linux pendente de execução aprovada, não publicado
 
 **Tempo de leitura:** 20 min
 
@@ -22,7 +22,7 @@ Nos capítulos anteriores, construímos testes, escolhemos locators, organizamos
 
 O código fica em [`examples/final-project/`](../examples/final-project/). A aplicação é a [SauceDemo](https://www.saucedemo.com/), uma loja pública de demonstração. O projeto usa sua interface real; Finish simula a conclusão de um pedido, sem pagamento ou entrega reais.
 
-O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. O projeto final ainda não possui workflow dedicado nem CI/CD homologado. Esse trabalho está previsto para a Sprint 10.6; neste rascunho, executamos e diagnosticamos a suíte localmente.
+O código dos capítulos 8 e 9 ensina CI/CD com exemplos próprios. Na Sprint 10.6, o projeto final recebe um workflow independente para validar a suíte no Ubuntu. Aprovação local no Windows não comprova homologação Linux: precisamos conferir uma execução real aprovada no GitHub Actions. Este capítulo continua como rascunho, sem publicação ou deploy.
 
 ## O que estamos construindo e por quê?
 
@@ -81,7 +81,8 @@ Os unitários não abrem navegador nem usam a senha do ambiente. Contudo, a conf
 
 ```text
 examples/final-project/
-├── config/             URL e credenciais
+├── config/             URL, credenciais e reporter do Quality Gate
+├── ci/                 contratos do gate e sanitização de evidências
 ├── pages/              uma classe por tela
 ├── components/         cabeçalho, menu e item de produto
 ├── fixtures/           dependências e preparação via UI
@@ -196,7 +197,7 @@ Se o readiness falhar, nenhum teste funcional executou: investigue conexão, URL
 npm run test:final:report
 ```
 
-O relatório fica em `examples/final-project/playwright-report/`. Screenshot e trace são retidos em falhas em `examples/final-project/test-results/`. O terminal informa o caminho do trace; abra-o com:
+O relatório fica em `examples/final-project/playwright-report/`. Localmente, screenshot e trace são retidos em falhas em `examples/final-project/test-results/`. No CI, traces ficam desativados para proteger credenciais. O terminal local informa o caminho do trace; abra-o com:
 
 ```bash
 npx playwright show-trace "<caminho-do-trace.zip>"
@@ -206,6 +207,30 @@ npm run test:final -- --grep CHECK-07 --headed
 Uma nova execução substitui os artefatos anteriores. Examine ação, locator, DOM e rede antes de mudar o teste. Não use retries para esconder falhas intermitentes.
 
 Traces podem conter senha e todos os dados digitados nos formulários, além de snapshots da tela. Use somente os dados fictícios do projeto e revise evidências antes de compartilhá-las. `.env`, relatórios e resultados estão ignorados pelo Git. Não versionamos a senha, cookies ou sessão autenticada, e as mensagens de erro de configuração não reproduzem a URL recebida.
+
+## Validando no GitHub Actions
+
+O workflow [`chapter-10-final-project.yml`](../.github/workflows/chapter-10-final-project.yml) usa Ubuntu 24.04 e Node.js 22.23.4 fixado. Faz checkout com token somente de leitura, usa cache npm pelo lockfile, executa `npm ci` e instala Chromium com as dependências Linux. Preserva os workflows dos capítulos anteriores e não realiza deploy.
+
+É acionado por push na branch `feat/playwright-chapter-10-final-project` e por PRs que alterem o projeto final, este rascunho, o próprio workflow ou os manifests npm. O filtro evita executar a suíte em qualquer alteração do repositório. Como checks filtrados podem ficar pendentes, exigir esse check globalmente requer uma política compatível com os caminhos. `workflow_dispatch` está declarado, mas a execução manual pela interface depende de o arquivo existir na branch padrão; enquanto estiver apenas nesta branch, o push dispara o job.
+
+### Credencial e aprovação explícita
+
+Cadastre manualmente **Settings → Secrets and variables → Actions → New repository secret**, com o nome `SAUCEDEMO_PASSWORD` e a senha de demonstração como valor. Nunca inclua o valor no YAML ou em logs. Nenhum secret é criado automaticamente. Se estiver ausente, a validação falha antes de checkout, instalação e testes; isso não representa suíte aprovada. Forks e Dependabot não recebem credenciais e são rejeitados antes de executar código do PR. Uma execução em branch confiável exige revisão prévia. Não usamos `pull_request_target`.
+
+Após a instalação, o job executa typecheck, contratos de segurança e do gate, listagem, smoke de **7 testes** e suíte completa de **41 testes**. São dois workers e zero retries. O reporter recebe `SAUCEDEMO_EXPECTED_TESTS` apenas nos passos correspondentes e exige exatamente um resultado aprovado por teste. Falha, skip, fixme, falha esperada, flaky, retries habilitados ou contagem incorreta fazem o job falhar. Os contratos sintéticos verificam esses caminhos de rejeição sem alterar os 41 testes existentes.
+
+Um smoke falho interrompe a sequência antes da regressão. Readiness indisponível continua sendo um diagnóstico separado de falha funcional, com tentativas limitadas; não existe bypass nem aprovação por ausência de resultados. O [README operacional](../examples/final-project/README.md#github-actions-e-quality-gate) mostra como reproduzir o gate localmente.
+
+### Evidências e interpretação
+
+Na execução do Actions, abra o job e leia o primeiro passo que falhou: configuração do secret, instalação, typecheck, disponibilidade externa, assertion ou regra do gate. Cancelamentos também não comprovam aprovação.
+
+Em falhas após a listagem, somente uma pasta preparada para upload é enviada como `chapter-10-failure-<run_id>-<attempt>`, com retenção de **3 dias**. Traces são desativados no CI por decisão de proteção das credenciais. A fixture oculta o bloco de senha pública da página; o input mantém sua máscara de password. O preparador remove a credencial configurada do texto e do ZIP embutido no HTML, inclusive suas formas escapada em JSON e codificada em URL. Arquivos inesperados, symlinks e falhas na sanitização bloqueiam o upload. Os contratos cobrem o processamento; o uso das bibliotecas ZIP internas do Playwright exige revisão quando a dependência for atualizada.
+
+Baixe o ZIP em **Artifacts**, extraia e abra `playwright-report/index.html` preservando a pasta `data`; confira também `screenshots/`. Pessoas com acesso ao repositório podem acessar esses arquivos conforme as permissões do GitHub. Não há publicação em páginas públicas nem comentários automáticos com traces. Use dados fictícios e revise evidências; a sanitização da senha não remove qualquer dado pessoal possível. Falhas antes dos testes podem não gerar anexos.
+
+Na preparação desta sprint, o secret remoto estava ausente. Depois de configurá-lo, use **Re-run all jobs**. A homologação Linux permanece pendente até conferir uma execução Ubuntu aprovada, seu commit, runtime, instalação, smoke 7/7 e suíte 41/41 sem retries. Os resultados Windows e a validação do YAML são evidências locais; o relatório de entrega registra separadamente o resultado remoto e seu link.
 
 ## Quando utilizar e quais são os limites?
 
@@ -240,7 +265,7 @@ O projeto conecta os conceitos dos capítulos anteriores em 35 testes de interfa
 
 ## Próximos passos
 
-Após revisão da Sprint 10.5, a Sprint 10.6 tratará do workflow dedicado e dos critérios de CI/CD; homologação e publicação permanecem etapas futuras. Este arquivo é um rascunho e não altera o status editorial dos capítulos publicados.
+A Sprint 10.6 implementa o workflow e o Quality Gate; sua homologação Linux exige execução remota aprovada e configuração manual do secret. A Sprint 10.7 depende de nova autorização. Este arquivo permanece um rascunho e não altera o status editorial dos capítulos publicados.
 
 ⬅ [Capítulo 9 — Playwright em CI/CD e Deploy](./09-playwright-cicd-deploy.md)
 
